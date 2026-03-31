@@ -25,7 +25,7 @@ class WhackSlot: SKNode {
         cropNode.maskNode = SKSpriteNode(imageNamed: "whackMask")
         
         charNode = SKSpriteNode(imageNamed: "WAMCat3")
-        charNode.position = CGPoint(x: 0+charNodeShift, y: -90+20)
+        charNode.position = CGPoint(x: CGFloat(charNodeShift), y: -70)
         charNode.xScale = 0.3
         charNode.yScale = 0.3
         charNode.name = "character"
@@ -33,6 +33,7 @@ class WhackSlot: SKNode {
         
         addChild(cropNode)
     }
+
     func show(hideTime: Double){ // hideTime = how long animal will hide
         if isVisible { return }
         
@@ -58,7 +59,7 @@ class WhackSlot: SKNode {
     func hide(){
         if !isVisible { return } // only hide if currently showing
         
-        charNode.run(SKAction.moveBy(x: 0, y:-80, duration:0.05))
+        charNode.run(SKAction.move(to: CGPoint(x: CGFloat(charNodeShift), y: -70), duration: 0.05))
         isVisible = false
     }
     
@@ -66,7 +67,7 @@ class WhackSlot: SKNode {
         isHit = true
         
         let delay = SKAction.wait(forDuration: 0.25)
-        let hide = SKAction.moveBy(x: 0, y: -80, duration: 0.5) // moves down slowly after hit
+        let hide = SKAction.move(to: CGPoint(x: CGFloat(charNodeShift), y: -70), duration: 0.5) // moves down slowly after hit
         let notVisible = SKAction.run { [weak self] in self?.isVisible = false }
         let sequence = SKAction.sequence([delay, hide, notVisible])
         charNode.run(sequence) // runs delay, hide, and notVisible in order every hit

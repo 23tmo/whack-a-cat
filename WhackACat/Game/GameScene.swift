@@ -39,6 +39,8 @@ class GameScene: SKScene {
     var slots = [WhackSlot]() // array of all the "cells" or slots where holes/moles will appear
     let gameScore = SKLabelNode(fontNamed: "ArialMT") // font of score
     let highscore = SKLabelNode(fontNamed: "ArialMT")
+    let defaultScorePosition = CGPoint(x: 15, y: 675)
+    let defaultHighscorePosition = CGPoint(x: 17, y: 650)
     var moveGameOverScreenUp = 100
 
     let pauseButton = SKSpriteNode(imageNamed: "PauseButton4")
@@ -80,18 +82,23 @@ class GameScene: SKScene {
         gameScore.text = "Score: 0" // default score
         gameScore.xScale = xscale*10
         gameScore.yScale = yscale*10
-        gameScore.position = CGPoint(x: 15, y: 675) 
+        gameScore.position = defaultScorePosition
         gameScore.horizontalAlignmentMode = .left
         gameScore.fontSize = 35;
         addChild(gameScore)
         
         highscore.text = "Highscore: \(getHighscore())"
-        highscore.position = CGPoint(x: 17, y: 650)
+        highscore.position = defaultHighscorePosition
         highscore.xScale = xscale*10
         highscore.yScale = yscale*10
         highscore.horizontalAlignmentMode = .left
         highscore.fontSize = 15;
         addChild(highscore)
+
+        layoutHudForSafeArea()
+        DispatchQueue.main.async { [weak self] in
+            self?.layoutHudForSafeArea()
+        }
         
         
         //  Creating slots in each row, high y makes nodes towards top of screen, 25 slots total
@@ -103,6 +110,28 @@ class GameScene: SKScene {
         
         // Wait 1 second after game starts before making new enemy
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5){ [weak self] in self?.createEnemy()}
+    }
+
+    override func didChangeSize(_ oldSize: CGSize) {
+        super.didChangeSize(oldSize)
+        layoutHudForSafeArea()
+    }
+
+    func layoutHudForSafeArea() {
+        guard let view = self.view, view.bounds.height > 0 else { return }
+
+        let scenePointsPerViewPoint = size.height / view.bounds.height
+        let safeAreaTopInset = view.safeAreaInsets.top * scenePointsPerViewPoint
+        let additionalTopClearance = max(0, safeAreaTopInset - 10)
+
+        gameScore.position = CGPoint(
+            x: defaultScorePosition.x,
+            y: defaultScorePosition.y - additionalTopClearance
+        )
+        highscore.position = CGPoint(
+            x: defaultHighscorePosition.x,
+            y: defaultHighscorePosition.y - additionalTopClearance
+        )
     }
 
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -11,7 +11,7 @@
         <!--Main Menu View Controller-->
         <scene sceneID="kQw-VZ-6hB">
             <objects>
-                <viewController storyboardIdentifier="VC" id="3dH-Nc-9xx" customClass="MainMenuViewController" customModule="Project14" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VC" id="3dH-Nc-9xx" customClass="MainMenuViewController" customModule="WhackACat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" clipsSubviews="YES" contentMode="redraw" preservesSuperviewLayoutMargins="YES" id="bbS-Wa-MXj">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
         <!--Game View Controller-->
         <scene sceneID="tXr-a1-R10">
             <objects>
-                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="Project14" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BV1-FR-VrT" customClass="GameViewController" customModule="WhackACat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" multipleTouchEnabled="YES" contentMode="scaleAspectFit" id="3se-qz-xqx" customClass="SKView">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -134,7 +134,7 @@
         <!--Game Info View Controller-->
         <scene sceneID="Hev-jB-DBF">
             <objects>
-                <viewController id="wTf-JM-Quu" customClass="GameInfoViewController" customModule="Project14" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wTf-JM-Quu" customClass="GameInfoViewController" customModule="WhackACat" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fda-6b-Wsy">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
